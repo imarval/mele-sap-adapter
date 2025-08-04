@@ -244,12 +244,6 @@ SAPAdapter/
 - **BAPI Update**: BAPI_CUSTOMER_CHANGE
 - **BAPI Read**: BAPI_CUSTOMER_GETDETAIL2
 
-### Proveedores (Vendors)
-- **Tabla SAP**: LFA1
-- **BAPI Create**: BAPI_VENDOR_CREATE
-- **BAPI Update**: BAPI_VENDOR_CHANGE
-- **BAPI Read**: BAPI_VENDOR_GETDETAIL
-
 ### Usuarios (Users)
 - **Tabla SAP**: USR02
 - **BAPI Create**: BAPI_USER_CREATE1

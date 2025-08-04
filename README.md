@@ -759,35 +759,4 @@ npm run dev
 
 MIT License - ver archivo [LICENSE](LICENSE) para detalles.
 
-## Soporte
-
-- **Issues**: [Reportar problemas](https://github.com/imarval/mele-sap-adapter/issues)
-- **Discusiones**: [GitHub Discussions](https://github.com/imarval/mele-sap-adapter/discussions)
-- **Documentación**: [Documentación completa](https://docs.empresa.com/sap-adapter)
-- **Ejemplos**: Ver directorio `examples/`
-
-## Roadmap
-
-### v1.1 (Próxima versión)
-- [ ] Soporte para IDoc SAP
-- [ ] Cache distribuido con Redis
-- [ ] Métricas Prometheus
-- [ ] Dashboard web de monitoreo
-
-### v1.2 (Futuro)
-- [ ] Soporte para SAP HANA
-- [ ] Integración con SAP Cloud Platform
-- [ ] API GraphQL
-- [ ] Clustering automático
-
-### v2.0 (Largo plazo)
-- [ ] Soporte para SAP S/4HANA
-- [ ] Integración con SAP Fiori
-- [ ] Machine Learning para optimización
-- [ ] Multi-tenancy nativo
-
 ---
-
-**Desarrollado con ❤️ para la comunidad SAP**
-
-Para más información, visite [https://github.com/imarval/mele-sap-adapter](https://github.com/imarval/mele-sap-adapter)

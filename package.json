@@ -1,0 +1,149 @@
+{
+  "name": "@integrationbridge/sap-adapter",
+  "version": "1.0.0",
+  "description": "SAP ERP integration adapter for connecting SAP systems to IntegrationBridge using RFC/BAPI",
+  "main": "index.js",
+  "keywords": [
+    "sap",
+    "erp",
+    "integration",
+    "bridge",
+    "adapter",
+    "rfc",
+    "bapi",
+    "signalr",
+    "webhook",
+    "nodejs",
+    "clean-architecture"
+  ],
+  "author": "Integration Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imarval/mele-sap-adapter.git"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "os": [
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "scripts": {
+    "start": "node examples/basic-usage.js",
+    "dev": "NODE_ENV=development node examples/basic-usage.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:integration": "jest --testPathPattern=integration",
+    "lint": "eslint src/ examples/ tests/",
+    "lint:fix": "eslint src/ examples/ tests/ --fix",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "clean": "rm -rf logs/ data/ coverage/ docs/",
+    "docker:build": "docker build -t sap-adapter .",
+    "docker:run": "docker run -p 3000:3000 sap-adapter",
+    "setup:sap": "node scripts/setup-sap-environment.js",
+    "validate:rfc": "node scripts/validate-rfc-connection.js"
+  },
+  "dependencies": {
+    "@microsoft/signalr": "^7.0.14",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.6",
+    "winston": "^3.11.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "compression": "^1.7.4",
+    "node-rfc": "^3.3.0",
+    "moment": "^2.29.4",
+    "lodash": "^4.17.21",
+    "xml2js": "^0.6.2",
+    "fast-xml-parser": "^4.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.55.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.4.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jsdoc": "^4.0.2",
+    "nodemon": "^3.0.2",
+    "@types/node": "^20.10.0"
+  },
+  "peerDependencies": {
+    "axios": "^1.6.0"
+  },
+  "sapDependencies": {
+    "note": "SAP NetWeaver RFC SDK is required. Download from SAP Support Portal.",
+    "rfcSdk": {
+      "version": "7.50 PL 7 or higher",
+      "platforms": {
+        "linux": "nwrfc750P_7.zip",
+        "windows": "nwrfc750P_7.zip"
+      }
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js",
+      "!src/utils/Logger.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/src/**/*.test.js"
+    ],
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ],
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "globals": {
+      "BigInt": "readonly"
+    },
+    "rules": {
+      "no-console": "warn",
+      "prefer-const": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "config/",
+    "examples/",
+    "scripts/",
+    "README.md",
+    "CHANGELOG.md",
+    "SAP_SETUP.md"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "app": {
+    "environment": "production"
+  },
+  "sap": {
+    "host": "${SAP_HOST}",
+    "systemNumber": "${SAP_SYSTEM_NUMBER}",
+    "client": "${SAP_CLIENT}",
+    "user": "${SAP_USER}",
+    "passwd": "${SAP_PASSWORD}",
+    "language": "${SAP_LANGUAGE:EN}",
+    "companyCode": "${SAP_COMPANY_CODE:1000}",
+    "plant": "${SAP_PLANT:1000}",
+    "warehouse": "${SAP_WAREHOUSE:}",
+    "poolSize": 20,
+    "timeout": 60000
+  },
+  "signalR": {
+    "url": "${SIGNALR_URL}",
+    "subscriptionId": "${SIGNALR_SUBSCRIPTION_ID}",
+    "timeout": 60000,
+    "keepAliveInterval": 30000,
+    "logLevel": "Warning",
+    "headers": {
+      "Authorization": "${SIGNALR_AUTH_TOKEN:}"
+    }
+  },
+  "webhook": {
+    "port": "${WEBHOOK_PORT:3000}",
+    "host": "${WEBHOOK_HOST:0.0.0.0}",
+    "secret": "${WEBHOOK_SECRET}",
+    "timeout": 60000,
+    "cors": {
+      "origin": "${CORS_ORIGIN:*}",
+      "credentials": true
+    },
+    "rateLimit": {
+      "max": 500,
+      "windowMs": 900000
+    }
+  },
+  "database": {
+    "events": {
+      "path": "${DB_EVENTS_PATH:./data/events.db}"
+    },
+    "sapRecords": {
+      "path": "${DB_SAP_RECORDS_PATH:./data/sap_records.db}"
+    }
+  },
+  "processing": {
+    "batchSize": 20,
+    "maxRetries": 5,
+    "retryDelay": 5000,
+    "parallelProcessing": true,
+    "timeout": 120000
+  },
+  "logging": {
+    "level": "${LOG_LEVEL:warn}",
+    "console": {
+      "enabled": true,
+      "colorize": false,
+      "timestamp": true
+    },
+    "file": {
+      "enabled": true,
+      "filename": "${LOG_FILE_PATH:./logs/sap-adapter.log}",
+      "maxsize": 52428800,
+      "maxFiles": 10,
+      "tailable": true
+    },
+    "format": "json"
+  },
+  "monitoring": {
+    "enabled": true,
+    "healthCheck": {
+      "interval": 30000,
+      "timeout": 10000
+    },
+    "metrics": {
+      "enabled": true,
+      "interval": 60000,
+      "endpoint": "${METRICS_ENDPOINT:}"
+    }
+  }
+}

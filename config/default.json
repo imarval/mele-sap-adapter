@@ -1,0 +1,190 @@
+{
+  "app": {
+    "name": "SAP Integration Adapter",
+    "version": "1.0.0",
+    "environment": "development"
+  },
+  "sap": {
+    "enabled": true,
+    "host": "localhost",
+    "systemNumber": "00",
+    "client": "100",
+    "user": "DEVELOPER",
+    "passwd": "password",
+    "language": "EN",
+    "poolSize": 10,
+    "timeout": 30000,
+    "companyCode": "1000",
+    "plant": "1000",
+    "warehouse": null,
+    "retry": {
+      "enabled": true,
+      "maxRetries": 3,
+      "retryDelay": 1000
+    }
+  },
+  "signalR": {
+    "enabled": true,
+    "url": "http://localhost:5000/hubs/outbound-events",
+    "subscriptionId": "sap-tenant-dev",
+    "timeout": 30000,
+    "keepAliveInterval": 15000,
+    "logLevel": "Information",
+    "autoReconnect": true,
+    "headers": {},
+    "accessTokenFactory": null
+  },
+  "webhook": {
+    "enabled": true,
+    "port": 3000,
+    "host": "0.0.0.0",
+    "timeout": 30000,
+    "maxBodySize": "10mb",
+    "secret": null,
+    "signatureAlgorithm": "sha256",
+    "cors": {
+      "enabled": true,
+      "origin": "*",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "allowedHeaders": ["Content-Type", "Authorization", "X-Hub-Signature-256", "X-Signature"]
+    },
+    "rateLimit": {
+      "max": 100,
+      "windowMs": 900000,
+      "message": "Too many requests"
+    },
+    "security": {
+      "enabled": true
+    },
+    "compression": true,
+    "requestLogging": true
+  },
+  "database": {
+    "events": {
+      "path": "./data/events.db",
+      "options": {
+        "verbose": false
+      }
+    },
+    "sapRecords": {
+      "path": "./data/sap_records.db",
+      "options": {
+        "verbose": false
+      }
+    }
+  },
+  "processing": {
+    "batchSize": 10,
+    "maxRetries": 3,
+    "retryDelay": 2000,
+    "parallelProcessing": false,
+    "timeout": 60000
+  },
+  "logging": {
+    "level": "info",
+    "console": {
+      "enabled": true,
+      "colorize": true,
+      "timestamp": true
+    },
+    "file": {
+      "enabled": false,
+      "filename": "./logs/sap-adapter.log",
+      "maxsize": 10485760,
+      "maxFiles": 5,
+      "tailable": true
+    },
+    "format": "simple"
+  },
+  "monitoring": {
+    "enabled": true,
+    "healthCheck": {
+      "interval": 60000,
+      "timeout": 5000
+    },
+    "metrics": {
+      "enabled": true,
+      "interval": 300000
+    }
+  },
+  "entityMappings": {
+    "Product": {
+      "sapEntityType": "MATERIAL",
+      "bapiCreate": "BAPI_MATERIAL_SAVEDATA",
+      "bapiUpdate": "BAPI_MATERIAL_SAVEDATA",
+      "bapiRead": "BAPI_MATERIAL_GET_DETAIL",
+      "table": "MARA",
+      "keyField": "MATERIAL",
+      "fieldMappings": {
+        "id": "MATERIAL",
+        "name": "DESCRIPTION",
+        "type": "MATERIAL_TYPE",
+        "category": "MATERIAL_GROUP",
+        "baseUnit": "BASE_UOM",
+        "weight": "NET_WEIGHT"
+      }
+    },
+    "User": {
+      "sapEntityType": "USER",
+      "bapiCreate": "BAPI_USER_CREATE1",
+      "bapiUpdate": "BAPI_USER_CHANGE",
+      "bapiRead": "BAPI_USER_GET_DETAIL",
+      "table": "USR02",
+      "keyField": "BNAME",
+      "fieldMappings": {
+        "id": "BNAME",
+        "firstName": "NAME_FIRST",
+        "lastName": "NAME_LAST",
+        "email": "E_MAIL"
+      }
+    },
+    "Store": {
+      "sapEntityType": "PLANT",
+      "bapiCreate": "BAPI_PLANT_CREATE",
+      "bapiUpdate": "BAPI_PLANT_CHANGE",
+      "bapiRead": "BAPI_PLANT_GETDETAIL",
+      "table": "T001W",
+      "keyField": "WERKS",
+      "fieldMappings": {
+        "id": "WERKS",
+        "name": "NAME1",
+        "address": "STRAS",
+        "city": "ORT01",
+        "country": "LAND1"
+      }
+    },
+    "Customer": {
+      "sapEntityType": "CUSTOMER",
+      "bapiCreate": "BAPI_CUSTOMER_CREATEFROMDATA1",
+      "bapiUpdate": "BAPI_CUSTOMER_CHANGE",
+      "bapiRead": "BAPI_CUSTOMER_GETDETAIL2",
+      "table": "KNA1",
+      "keyField": "KUNNR",
+      "fieldMappings": {
+        "id": "KUNNR",
+        "name": "NAME1",
+        "name2": "NAME2",
+        "country": "LAND1",
+        "city": "ORT01",
+        "postalCode": "PSTLZ",
+        "street": "STRAS"
+      }
+    },
+    "Vendor": {
+      "sapEntityType": "VENDOR",
+      "bapiCreate": "BAPI_VENDOR_CREATE",
+      "bapiUpdate": "BAPI_VENDOR_CHANGE",
+      "bapiRead": "BAPI_VENDOR_GETDETAIL",
+      "table": "LFA1",
+      "keyField": "LIFNR",
+      "fieldMappings": {
+        "id": "LIFNR",
+        "name": "NAME1",
+        "country": "LAND1",
+        "city": "ORT01",
+        "postalCode": "PSTLZ",
+        "street": "STRAS"
+      }
+    }
+  }
+}
